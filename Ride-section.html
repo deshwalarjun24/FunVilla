@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunVilla Play Zone - Our Exciting Rides</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced styles for the rides page */
+        :root {
+            --primary-color: #8c52ff;
+            --primary-dark: #7a3cf7;
+            --primary-light: #e9e0ff;
+            --secondary-color: #00c2a8;
+            --secondary-dark: #00a18c;
+            --secondary-light: #d9f7f3;
+            --accent-color: #ffca3a;
+            --accent-light: #fff5d6;
+            --success-color: #00c2a8;
+            --warning-color: #ffca3a;
+            --danger-color: #ff595e;
+            --dark-color: #2d3436;
+            --light-color: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --gray-dark: #6c757d;
+            --gradient-primary: linear-gradient(135deg, #8c52ff 0%, #6a3cf7 100%);
+            --gradient-secondary: linear-gradient(135deg, #00c2a8 0%, #00a18c 100%);
+            --gradient-accent: linear-gradient(135deg, #ffca3a 0%, #ffb700 100%);
+        }
+        
+        body {
+            font-family: 'Comic Neue', cursive;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: var(--dark-color);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        header {
+            background-color: transparent;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: none;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+            opacity: 10;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .site-title {
+            font-size: 3rem;
+            color: var(--primary-color);
+            font-family: 'Bubblegum Sans', cursive;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .rides-hero {
+            padding: 60px 5%;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(140, 82, 255, 0.1) 0%, rgba(0, 194, 168, 0.1) 100%);
+            background-size: cover;
+            background-position: center;
+            border-bottom: 5px solid var(--primary-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rides-hero::before {
+            content: '';
+                position: absolute;
+            top: 0;
+            left: 0;
+                right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238c52ff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        
+        .section-title {
+            font-family: 'Bubblegum Sans', cursive;
+            color: var(--primary-color);
+            font-size: 3rem;
+                margin-bottom: 15px;
+            text-shadow: 3px 3px 0px rgba(140, 82, 255, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 6px;
+            bottom: -10px;
+            left: 20%;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+        }
+        
+        .rides-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 20px auto;
+            color: var(--dark-color);
+        }
+        
+        .ride-categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(140, 82, 255, 0.3);
+        }
+        
+        .category-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(140, 82, 255, 0.4);
+        }
+        
+        .category-btn.active {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 10px rgba(140, 82, 255, 0.4);
+            transform: scale(1.05);
+        }
+        
+        /* Main content layout with sidebar */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background-color: var(--light-color);
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            border-top: 5px solid var(--primary-color);
+            border-bottom: 5px solid var(--secondary-color);
+            z-index: 999;
+        }
+        
+        .rides-container {
+            flex: 1;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .ride-card {
+            background-color: var(--light-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+        }
+        
+        .ride-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-primary);
+            z-index: 1;
+        }
+        
+        .ride-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(140, 82, 255, 0.15);
+        }
+        
+        .ride-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .ride-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+        
+        .ride-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .ride-card:hover .ride-image img {
+            transform: scale(1.1);
+        }
+        
+        .ride-content {
+            padding: 25px;
+        }
+        
+        .ride-content h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-family: 'Bubblegum Sans', cursive;
+        }
+        
+        .age-group, .description, .ride-details {
+            margin: 12px 0;
+            font-size: 1rem;
+        }
+        
+        .age-group {
+            color: var(--light-color);
+            font-weight: 600;
+            background: var(--gradient-secondary);
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            box-shadow: 0 3px 10px rgba(0, 194, 168, 0.2);
+        }
+        
+        .description {
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .ride-details {
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--secondary-light);
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 600;
+            color: var(--secondary-dark);
+        }
+        
+        .crowd-status {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background-color: var(--gray-light);
+        }
+        
+        .status-indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .low {
+            background-color: var(--success-color);
+            box-shadow: 0 0 10px var(--success-color);
+        }
+        
+        .medium {
+            background-color: var(--warning-color);
+            box-shadow: 0 0 10px var(--warning-color);
+        }
+        
+        .high {
+            background-color: var(--danger-color);
+            box-shadow: 0 0 10px var(--danger-color);
+        }
+        
+        .status-text {
+            font-size: 0.95rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .details-btn {
+            background: var(--gradient-secondary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 194, 168, 0.3);
+        }
+        
+        .details-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 194, 168, 0.4);
+        }
+        
+        /* Sidebar styles */
+        .sidebar-section {
+            margin-bottom: 30px;
+            z-index: 999;
+            position: relative;
+        }
+        
+        .sidebar-title {
+            font-family: 'Bubblegum Sans', cursive;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--primary-light);
+            position: relative;
+            display: inline-block;
+            z-index: 999;
+        }
+        
+        .park-hours {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 999;
+        }
+        
+        .park-hours li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--gray-medium);
+        }
+        
+        .special-notice {
+            background-color: var(--accent-light);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            font-size: 1rem;
+            margin-top: 15px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 3px 10px rgba(255, 202, 58, 0.1);
+            position: relative;
+            z-index: 999;
+        }
+        
+        .promo-box {
+            background: linear-gradient(135deg, rgba(140, 82, 255, 0.1) 0%, rgba(255, 202, 58, 0.1) 100%);
+            border: 2px dashed var(--accent-color);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 999;
+        }
+        
+        .promo-box h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-family: 'Bubblegum Sans', cursive;
+        }
+        
+        .promo-box p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .promo-btn {
+            background: var(--gradient-accent);
+            color: var(--dark-color);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 202, 58, 0.3);
+        }
+        
+        .promo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 202, 58, 0.4);
+        }
+        
+        .weather-info {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(0, 194, 168, 0.1) 0%, rgba(0, 161, 140, 0.05) 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 2px dashed var(--secondary-color);
+            position: relative;
+            z-index: 999;
+        }
+        
+        .weather-icon {
+            font-size: 3rem;
+            margin-right: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .weather-details {
+            flex: 1;
+        }
+        
+        .weather-temp {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-dark);
+        }
+        
+        .weather-desc {
+            font-size: 1rem;
+            color: var(--dark-color);
+            margin-top: 5px;
+        }
+        
+        .sidebar ul {
+            padding-left: 20px;
+            margin: 15px 0;
+            position: relative;
+            z-index: 999;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 5px;
+        }
+        
+        .sidebar ul li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            font-size: 1.2rem;
+        }
+        
+        /* Enhanced footer styles */
+        .footer {
+            background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
+            color: var(--light-color);
+            padding: 60px 5% 30px;
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+            padding-right: 20px;
+        }
+        
+        .footer-title {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-primary);
+            bottom: 0;
+            left: 0;
+            border-radius: 3px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #555;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-icon:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 5px 15px rgba(140, 82, 255, 0.3);
+        }
+        
+        .newsletter-form input {
+            padding: 15px;
+            width: 100%;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 25px;
+            background-color: #444;
+            color: var(--light-color);
+            font-size: 1rem;
+        }
+        
+        .newsletter-form input:focus {
+            outline: none;
+            background-color: #4a4a4a;
+            box-shadow: 0 0 0 3px rgba(140, 82, 255, 0.3);
+        }
+        
+        .newsletter-form button {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(140, 82, 255, 0.4);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            font-size: 0.95rem;
+        }
+        
+        .footer-bottom a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Mobile-specific fixes */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav.active ul {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: rgba(255, 255, 255, 0.95);
+                width: 200px;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 100;
+                border-radius: 0 0 15px 15px;
+            }
+            
+            nav.active ul li {
+                margin-bottom: 15px;
+            }
+            
+            .sidebar {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 30px;
+                position: static;
+                order: -1; /* Make sidebar appear before rides on mobile */
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                background-color: var(--light-color);
+                border-radius: 15px;
+                padding: 25px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border-top: 5px solid var(--primary-color);
+                border-bottom: 5px solid var(--secondary-color);
+                max-width: 100%;
+                box-sizing: border-box;
+                z-index: 999;
+            }
+            
+            .main-content {
+                flex-direction: column;
+                display: flex;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .rides-hero {
+                padding: 40px 5%;
+            }
+            
+            .sidebar-section {
+                margin-bottom: 25px;
+                width: 100%;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            .sidebar-title {
+                display: block !important;
+                width: 100%;
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+                border-bottom: 2px dashed var(--primary-light);
+                padding-bottom: 10px;
+                color: var(--primary-color);
+                font-family: 'Bubblegum Sans', cursive;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            .park-hours {
+                width: 100%;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .park-hours li {
+                width: 100%;
+                display: flex !important;
+                justify-content: space-between;
+                padding: 8px 0;
+                margin-bottom: 10px;
+                border-bottom: 1px dashed var(--gray-medium);
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            .special-notice {
+                width: 100%;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                background-color: var(--accent-light);
+                border-left: 4px solid var(--accent-color);
+                padding: 15px;
+                margin-top: 15px;
+                border-radius: 0 10px 10px 0;
+            }
+            
+            .weather-info {
+                width: 100%;
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                background: linear-gradient(135deg, rgba(0, 194, 168, 0.1) 0%, rgba(0, 161, 140, 0.05) 100%);
+                padding: 20px;
+                border-radius: 15px;
+                margin-top: 15px;
+                border: 2px dashed var(--secondary-color);
+                align-items: center;
+            }
+            
+            .promo-box {
+                width: 100%;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                background: linear-gradient(135deg, rgba(140, 82, 255, 0.1) 0%, rgba(255, 202, 58, 0.1) 100%);
+                border: 2px dashed var(--accent-color);
+                padding: 25px;
+                border-radius: 15px;
+                text-align: center;
+                margin-top: 15px;
+            }
+            
+            .sidebar ul {
+                width: 100%;
+                display: block !important;
+                padding-left: 20px;
+                margin: 15px 0;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            .sidebar ul li {
+                display: list-item !important;
+                width: 100%;
+                margin-bottom: 10px;
+                position: relative;
+                padding-left: 5px;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            .sidebar ul li::before {
+                content: '•';
+                color: var(--secondary-color);
+                font-weight: bold;
+                display: inline-block !important;
+                width: 1em;
+                margin-left: -1em;
+                font-size: 1.2rem;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            /* Fix for ride cards on mobile */
+            .rides-container {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+            
+            .ride-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Add this to ensure the mobile menu works properly */
+        @media (max-width: 768px) {
+            #menu-toggle {
+                display: block;
+                z-index: 1000;
+            }
+            
+            #main-nav.active ul {
+                display: flex !important;
+            }
+        }
+        
+        /* Fix for very small screens */
+        @media (max-width: 480px) {
+            .ride-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 80%;
+                margin-bottom: 10px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .sidebar-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Add a style for when scrolling to make the header more visible if needed */
+        .header-scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(140, 82, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="Images/Logo/Logo.png" alt="FunVilla Logo" class="logo">
+            <h1 class="site-title">FunVilla Play Zone</h1>
+        </div>
+        <button class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Ride-section.html">Rides</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+                <li><a href="games.html">Play Games</a></li>
+                <li><a href="index.html#safety">Safety</a></li>
+                <li><a href="index.html#location">Location</a></li>
+                <li><a href="index.html#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="rides-hero">
+        <h2 class="section-title">Our Awesome Rides</h2>
+        <p>Discover all the fun activities waiting for you at FunVilla Play Zone!</p>
+        
+        <div class="ride-categories">
+            <button class="category-btn active" data-category="all">All Rides</button>
+            <button class="category-btn" data-category="toddler">Toddler (1-3 yrs)</button>
+            <button class="category-btn" data-category="kids">Kids (4-7 yrs)</button>
+            <button class="category-btn" data-category="junior">Junior (8-12 yrs)</button>
+            <button class="category-btn" data-category="family">Family Rides</button>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Park Hours</h3>
+                <ul class="park-hours">
+                    <li><span>Monday - Thursday:</span> <span>10:00 AM - 7:00 PM</span></li>
+                    <li><span>Friday:</span> <span>10:00 AM - 9:00 PM</span></li>
+                    <li><span>Saturday:</span> <span>9:00 AM - 10:00 PM</span></li>
+                    <li><span>Sunday:</span> <span>9:00 AM - 8:00 PM</span></li>
+                </ul>
+                <div class="special-notice">
+                    <strong>Note:</strong> Hours may vary during holidays and special events.
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Today's Weather</h3>
+                <div class="weather-info">
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-details">
+                        <div class="weather-temp">28°C</div>
+                        <div class="weather-desc">Sunny, perfect for water rides!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Special Promotion</h3>
+            <div class="promo-box">
+                <h4>Family Package Deal</h4>
+                <p>Get 20% off when you book for 4 or more people!</p>
+                <a href="booking.html" class="promo-btn">Book Now</a>
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Safety Tips</h3>
+            <ul>
+                <li>Always follow ride attendant instructions</li>
+                <li>Secure loose items before boarding rides</li>
+                <li>Children must meet height requirements</li>
+                <li>Stay hydrated throughout your visit</li>
+            </ul>
+        </div>
+    </div>
+    
+    <section class="rides-container">
+        <!-- Ride 1 -->
+        <div class="ride-card" data-category="toddler family">
+            <div class="ride-image">
+                <img src="Images/Ride-card/ride-card1.PNG" alt="Merry-Go-Round">
+            </div>
+            <div class="ride-content">
+                <h3>Merry-Go-Round</h3>
+                <p class="age-group">Age: 3-10 years</p>
+                <p class="description">Spin around on colorful horses and magical creatures!</p>
+                <div class="ride-details">
+                    <span class="duration">Duration: 5 mins</span>
+                    <span class="price">Price: $3</span>
+                </div>
+                <div class="crowd-status" data-ride="merry-go-round">
+                    <div class="status-indicator low"></div>
+                    <span class="status-text">Low Wait Time</span>
+                </div>
+                <button class="details-btn">See Details</button>
+            </div>
+        </div>
+        
+        <!-- Ride 2 -->
+        <div class="ride-card" data-category="kids family">
+            <div class="ride-image">
+                <img src="Images/Ride-card/ride-card2.PNG" alt="Bouncy Castle">
+            </div>
+            <div class="ride-content">
+                <h3>Bouncy Castle</h3>
+                <p class="age-group">Age: 4-12 years</p>
+                <p class="description">Jump and bounce in our colorful inflatable castle!</p>
+                <div class="ride-details">
+                    <span class="duration">Duration: 15 mins</span>
+                    <span class="price">Price: $5</span>
+                </div>
+                <div class="crowd-status" data-ride="bouncy-castle">
+                    <div class="status-indicator medium"></div>
+                    <span class="status-text">Medium Wait Time</span>
+                </div>
+                <button class="details-btn">See Details</button>
+            </div>
+        </div>
+        
+        <!-- Ride 3 -->
+        <div class="ride-card" data-category="junior family">
+            <div class="ride-image">
+                <img src="Images/Ride-card/ride-card3.PNG" alt="Mini Roller Coaster">
+            </div>
+            <div class="ride-content">
+                <h3>Mini Roller Coaster</h3>
+                <p class="age-group">Age: 6-14 years</p>
+                <p class="description">Experience thrilling dips and turns on our safe mini coaster!</p>
+                <div class="ride-details">
+                    <span class="duration">Duration: 3 mins</span>
+                    <span class="price">Price: $4</span>
+                </div>
+                <div class="crowd-status" data-ride="mini-coaster">
+                    <div class="status-indicator high"></div>
+                    <span class="status-text">High Wait Time</span>
+                </div>
+                <button class="details-btn">See Details</button>
+            </div>
+        </div>
+        
+        <!-- Ride 4 -->
+        <div class="ride-card" data-category="toddler kids">
+            <div class="ride-image">
+                <img src="Images/Ride-card/ride-card1.PNG" alt="Balloon Ride">
+            </div>
+            <div class="ride-content">
+                <h3>Balloon Ride</h3>
+                <p class="age-group">Age: 2-8 years</p>
+                <p class="description">Gently float up and down in colorful balloon-shaped pods!</p>
+                <div class="ride-details">
+                    <span class="duration">Duration: 4 mins</span>
+                    <span class="price">Price: $3</span>
+                </div>
+                <div class="crowd-status" data-ride="balloon-ride">
+                    <div class="status-indicator low"></div>
+                    <span class="status-text">Low Wait Time</span>
+                </div>
+                <button class="details-btn">See Details</button>
+            </div>
+        </div>
+        
+        <!-- Ride 5 -->
+        <div class="ride-card" data-category="kids junior">
+            <div class="ride-image">
+                <img src="Images/Ride-card/ride-card2.PNG" alt="Bumper Cars">
+            </div>
+            <div class="ride-content">
+                <h3>Bumper Cars</h3>
+                <p class="age-group">Age: 5-12 years</p>
+                <p class="description">Drive and bump into friends in our safe electric cars!</p>
+                <div class="ride-details">
+                    <span class="duration">Duration: 5 mins</span>
+                    <span class="price">Price: $4</span>
+                </div>
+                <div class="crowd-status" data-ride="bumper-cars">
+                    <div class="status-indicator medium"></div>
+                    <span class="status-text">Medium Wait Time</span>
+                </div>
+                <button class="details-btn">See Details</button>
+            </div>
+        </div>
+        
+        <!-- Ride 6 -->
+        <div class="ride-card" data-category="junior family">
+            <div class="ride-image">
+                <img src="Images/Ride-card/ride-card3.PNG" alt="Ferris Wheel">
+            </div>
+            <div class="ride-content">
+                <h3>Ferris Wheel</h3>
+                <p class="age-group">Age: All ages</p>
+                <p class="description">Enjoy panoramic views of the park from our gentle Ferris wheel!</p>
+                <div class="ride-details">
+                    <span class="duration">Duration: 8 mins</span>
+                    <span class="price">Price: $5</span>
+                </div>
+                <div class="crowd-status" data-ride="ferris-wheel">
+                    <div class="status-indicator high"></div>
+                    <span class="status-text">High Wait Time</span>
+                </div>
+                <button class="details-btn">See Details</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3 class="footer-title">FunVilla Play Zone</h3>
+            <p>The ultimate destination for family fun and adventure. We provide safe, exciting rides and activities for children of all ages.</p>
+            <div class="social-links">
+                <a href="#" class="social-icon">f</a>
+                <a href="#" class="social-icon">t</a>
+                <a href="#" class="social-icon">i</a>
+                <a href="#" class="social-icon">y</a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Ride-section.html">Rides</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+                <li><a href="games.html">Play Games</a></li>
+                <li><a href="index.html#safety">Safety</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3 class="footer-title">Contact Us</h3>
+            <ul class="footer-links">
+                <li>123 Fun Street, Playful City</li>
+                <li>Phone: (123) 456-7890</li>
+                <li>Email: info@funvilla.com</li>
+                <li>Hours: 9:00 AM - 8:00 PM</li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3 class="footer-title">Newsletter</h3>
+            <p>Subscribe to our newsletter for special offers and updates.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your Email" style="padding: 8px; width: 100%; margin-bottom: 10px; border: none; border-radius: 4px;">
+                <button type="submit" style="background-color: #ff6b6b; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 FunVilla Play Zone. All rights reserved. | <a href="#" style="color: #ddd;">Privacy Policy</a> | <a href="#" style="color: #ddd;">Terms of Service</a></p>
+    </div>
+</footer>
+
+<script>
+    // Simple JavaScript for mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+
+        // Add scroll event listener for header background
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Category filter functionality - Fixed version
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const rideCards = document.querySelectorAll('.ride-card');
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                console.log('Selected category:', category);
+                
+                // Show/hide ride cards based on category
+                rideCards.forEach(card => {
+                    const cardCategories = card.getAttribute('data-category');
+                    console.log('Card categories:', cardCategories);
+                    
+                    if (category === 'all' || cardCategories.includes(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

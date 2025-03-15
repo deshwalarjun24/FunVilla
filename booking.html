@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunVilla Play Zone - Book Your Adventure</title>
+    <link rel="stylesheet" href="booking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Simple inline header styles */
+        .simple-header {
+            background-color: #f8f9fa;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid #ffd166;
+        }
+        
+        .simple-logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .simple-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 3px solid #ff6b6b;
+        }
+        
+        .simple-site-title {
+            font-size: 2.2rem;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 0 #4ecdc4;
+            font-family: 'Bubblegum Sans', cursive;
+        }
+        
+        .simple-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        .simple-menu li a {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.2rem;
+            color: #343a40;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        
+        .simple-menu li a:hover {
+            color: #ff6b6b;
+        }
+        
+        .simple-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+        
+        .simple-hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #ff6b6b;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .simple-menu {
+                display: none;
+            }
+            
+            .simple-hamburger {
+                display: flex;
+            }
+            
+            .simple-menu.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: #f8f9fa;
+                width: 250px;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .simple-menu.active li {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Simple header implementation -->
+    <header class="simple-header">
+        <div class="simple-logo-container">
+            <img src="Images/Logo/Logo.png" alt="FunVilla Logo" class="simple-logo">
+            <h1 class="simple-site-title">FunVilla Play Zone</h1>
+        </div>
+        
+        <button class="simple-hamburger" id="simple-hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <ul class="simple-menu" id="simple-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Ride-section.html">Rides</a></li>
+            <li><a href="booking.html">Book Now</a></li>
+            <li><a href="games.html">Play Games</a></li>
+            <li><a href="index.html#crowd">Crowd Status</a></li>
+            <li><a href="index.html#safety">Safety</a></li>
+            <li><a href="index.html#location">Location</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+    </header>
+    
+    <section id="booking" class="booking-section">
+        <div class="section-header">
+            <h2>Book Your Magical Adventure!</h2>
+            <p>Pick your day of fun and let the excitement begin!</p>
+        </div>
+        
+        <div class="booking-container">
+            <!-- Fun decorative elements -->
+            <div class="floating-elements">
+                <div class="balloon balloon-red"></div>
+                <div class="balloon balloon-blue"></div>
+                <div class="balloon balloon-yellow"></div>
+                <div class="rocket"></div>
+                <div class="star star1"></div>
+                <div class="star star2"></div>
+                <div class="star star3"></div>
+            </div>
+            
+            <div class="booking-form-container">
+                <div class="ticket-design">
+                    <div class="ticket-holes">
+                        <div class="hole"></div>
+                        <div class="hole"></div>
+                        <div class="hole"></div>
+                        <div class="hole"></div>
+                    </div>
+                    <h3 class="ticket-title">Your Golden Ticket!</h3>
+                    
+                    <div class="booking-form">
+                        <form id="book-form">
+                            <div class="adventure-selector">
+                                <h4>Choose Your Adventure!</h4>
+                                <div class="package-cards">
+                                    <label class="package-card" for="package-basic">
+                                        <input type="radio" id="package-basic" name="package" value="basic">
+                                        <div class="package-icon">🎪</div>
+                                        <div class="package-name">Basic Fun</div>
+                                        <div class="package-details">3 rides - $10</div>
+                                    </label>
+                                    
+                                    <label class="package-card" for="package-super">
+                                        <input type="radio" id="package-super" name="package" value="super">
+                                        <div class="package-icon">🎢</div>
+                                        <div class="package-name">Super Fun</div>
+                                        <div class="package-details">6 rides - $18</div>
+                                    </label>
+                                    
+                                    <label class="package-card" for="package-mega">
+                                        <input type="radio" id="package-mega" name="package" value="mega">
+                                        <div class="package-icon">✨</div>
+                                        <div class="package-name">Mega Fun</div>
+                                        <div class="package-details">All rides - $25</div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="fun-form-group">
+                                <label for="visit-date">When's the Big Day? 📅</label>
+                                <input type="date" id="visit-date" required>
+                            </div>
+                            
+                            <div class="fun-form-group">
+                                <label for="time-slot">What Time to Play? ⏰</label>
+                                <select id="time-slot" required>
+                                    <option value="">Pick a fun time!</option>
+                                    <option value="10:00">Morning Fun: 10:00 AM - 12:00 PM</option>
+                                    <option value="12:30">Lunch Fun: 12:30 PM - 2:30 PM</option>
+                                    <option value="3:00">Afternoon Fun: 3:00 PM - 5:00 PM</option>
+                                    <option value="5:30">Evening Fun: 5:30 PM - 7:30 PM</option>
+                                </select>
+                            </div>
+                            
+                            <div class="fun-form-group fun-counter">
+                                <label for="kids">How Many Explorers? 👧👦</label>
+                                <div class="counter-controls">
+                                    <button type="button" class="counter-btn minus">-</button>
+                                    <input type="number" id="kids" min="1" max="10" value="1" required>
+                                    <button type="button" class="counter-btn plus">+</button>
+                                </div>
+                                <div class="explorer-icons" id="explorer-icons">
+                                    <div class="kid-icon">👧</div>
+                                </div>
+                            </div>
+                            
+                            <div class="grownup-info">
+                                <h4>Grown-up Details</h4>
+                                <div class="fun-form-group">
+                                    <label for="parent-name">Your Superhero Name:</label>
+                                    <input type="text" id="parent-name" placeholder="Your name here" required>
+                                </div>
+                                
+                                <div class="fun-form-group">
+                                    <label for="email">Magic Message Box (Email):</label>
+                                    <input type="email" id="email" placeholder="where to send your ticket" required>
+                                </div>
+                                
+                                <div class="fun-form-group">
+                                    <label for="phone">Talking Device Number:</label>
+                                    <input type="tel" id="phone" placeholder="your phone number" required>
+                                </div>
+                            </div>
+                            
+                            <div class="special-requests">
+                                <label for="special-wishes">Any Special Wishes?</label>
+                                <textarea id="special-wishes" placeholder="Birthday celebration? Special needs? Tell us!"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn magic-btn" onclick="paymentgateway()" >
+                                <span class="btn-text">Let the Fun Begin!</span>
+                                <span class="sparkles">✨</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-info">
+                <div class="info-card treasure-chest">
+                    <div class="chest-lid"></div>
+                    <h3>Treasure Chest of Benefits!</h3>
+                    <ul class="treasure-list">
+                        <li>
+                            <span class="treasure-icon">🏃</span>
+                            <span class="treasure-text">Zoom past the waiting line!</span>
+                        </li>
+                        <li>
+                            <span class="treasure-icon">💰</span>
+                            <span class="treasure-text">Special online discounts!</span>
+                        </li>
+                        <li>
+                            <span class="treasure-icon">🎡</span>
+                            <span class="treasure-text">Reserve your favorite rides!</span>
+                        </li>
+                        <li>
+                            <span class="treasure-icon">📧</span>
+                            <span class="treasure-text">Magic tickets appear in your email!</span>
+                        </li>
+                        <li>
+                            <span class="treasure-icon">🎁</span>
+                            <span class="treasure-text">Surprise gift for online bookings!</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="mascot-helper">
+                    <div class="mascot-image"></div>
+                    <div class="speech-bubble">
+                        <p>Hi there, friend! Need help booking your adventure? Click me!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fun-meter">
+            <div class="fun-meter-label">Fun-o-meter</div>
+            <div class="fun-meter-gauge">
+                <div class="fun-meter-needle"></div>
+            </div>
+            <div class="fun-meter-max">Maximum Fun!</div>
+        </div>
+    </section>
+    <script>
+        // Debug script to check if elements exist
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded');
+            const menuToggle = document.getElementById('mobile-menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            const overlay = document.getElementById('menu-overlay');
+            
+            console.log('Menu toggle:', menuToggle);
+            console.log('Main nav:', mainNav);
+            console.log('Overlay:', overlay);
+            
+            if (menuToggle) {
+                console.log('Adding direct click listener');
+                menuToggle.addEventListener('click', function() {
+                    console.log('Direct click detected');
+                    this.classList.toggle('active');
+                    if (mainNav) mainNav.classList.toggle('active');
+                    if (overlay) overlay.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
+            }
+        });
+    </script>
+    <script>
+        // Simple function to toggle the menu
+        function toggleMenu() {
+            const menu = document.getElementById('simple-menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+    <script src="booking.js"></script>
+</body>
+</html>

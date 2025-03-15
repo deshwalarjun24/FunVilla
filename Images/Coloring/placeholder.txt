@@ -1,0 +1,6 @@
+Please add three coloring template images here named:
+1. template1.png - An animal friends outline drawing
+2. template2.png - An underwater world outline drawing
+3. template3.png - A space adventure outline drawing
+
+These should be PNG images with transparent backgrounds and black outlines (e.g., 600x400 pixels) that will be used for the coloring book game. 

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway | Funvilla Kids Play Zone</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Bubblegum Sans', cursive;
+        }
+        
+        body {
+            background-color: #f8f7ff;
+            color: #333;
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff9d00' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 0 #ffd166;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .header-subtitle {
+            font-size: 18px;
+            color: #118ab2;
+        }
+        
+        /* Main Content */
+        .payment-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Booking Summary Section */
+        .booking-summary {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 3px solid #ffd166;
+        }
+        
+        .summary-title {
+            color: #06d6a0;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .summary-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: #ffd166;
+            border-radius: 2px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 2px dashed #e9ecef;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: #118ab2;
+        }
+        
+        .summary-value {
+            color: #073b4c;
+            font-weight: 500;
+        }
+        
+        .total-row {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 3px solid #ffd166;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .total-row .summary-label {
+            color: #ff6b6b;
+        }
+        
+        .total-row .summary-value {
+            color: #ff6b6b;
+        }
+        
+        /* Ride Images Carousel */
+        .ride-preview {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .ride-image {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 2px solid #118ab2;
+        }
+        
+        .ride-name {
+            font-weight: bold;
+            color: #118ab2;
+            font-size: 16px;
+        }
+        
+        /* Payment Form Section */
+        .payment-form {
+            flex: 2;
+            min-width: 350px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 3px solid #06d6a0;
+        }
+        
+        .form-title {
+            color: #118ab2;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .form-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: #06d6a0;
+            border-radius: 2px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+        
+        .payment-method {
+            flex: 1;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            max-width: 120px;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-method.active {
+            border-color: #06d6a0;
+            background-color: #effcf6;
+        }
+        
+        .payment-method svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 8px;
+            fill: #118ab2;
+        }
+        
+        .payment-method-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #073b4c;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #118ab2;
+            font-size: 16px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+            color: #073b4c;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #06d6a0;
+            box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.2);
+            background-color: white;
+        }
+        
+        .card-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .card-number {
+            flex: 2;
+        }
+        
+        .card-expiry, .card-cvc {
+            flex: 1;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 0 #e85555;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn:hover {
+            background-color: #fd5e5e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #e85555;
+        }
+        
+        .submit-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #e85555;
+        }
+        
+        .security-note {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            color: #6c757d;
+            font-size: 14px;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px dashed #ced4da;
+        }
+        
+        .security-note svg {
+            fill: #6c757d;
+            min-width: 20px;
+            height: 20px;
+        }
+        
+        /* NOC Section */
+        .safety-note {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .safety-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .safety-content {
+            color: #856404;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .card-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .payment-methods {
+                flex-wrap: wrap;
+            }
+            
+            .payment-method {
+                min-width: 100px;
+            }
+        }
+        
+        /* Animations and Fun Elements */
+        .balloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+            z-index: -1;
+        }
+        
+        .balloon:before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            bottom: -15px;
+            left: 13px;
+        }
+        
+        .balloon:nth-child(2) {
+            background-color: #ffd166;
+            left: 15%;
+            top: 20%;
+            animation-delay: 2s;
+        }
+        
+        .balloon:nth-child(3) {
+            background-color: #06d6a0;
+            right: 20%;
+            top: 30%;
+            animation-delay: 5s;
+        }
+        
+        .balloon:nth-child(4) {
+            background-color: #118ab2;
+            right: 10%;
+            top: 10%;
+            animation-delay: 7s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Balloons -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                </svg>
+                Funvilla Kids Play Zone
+            </div>
+            <div class="header-subtitle">Fun, Play, Learn & Grow!</div>
+        </div>
+        
+        <div class="payment-container">
+            <div class="booking-summary">
+                <h2 class="summary-title">Booking Summary</h2>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Package Selected</span>
+                    <span class="summary-value" id="package-name">Adventure Pack</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Date</span>
+                    <span class="summary-value" id="booking-date">Saturday, March 8, 2025</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Time Slot</span>
+                    <span class="summary-value" id="time-slot">10:00 AM - 1:00 PM</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Number of Children</span>
+                    <span class="summary-value" id="child-count">2</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Age Group</span>
+                    <span class="summary-value" id="age-group">5-10 years</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Package Price</span>
+                    <span class="summary-value" id="package-price">$50.00</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Add-ons</span>
+                    <span class="summary-value" id="addons">Birthday Cake (+$15.00)</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Tax</span>
+                    <span class="summary-value" id="tax-amount">$6.50</span>
+                </div>
+                
+                <div class="summary-item total-row">
+                    <span class="summary-label">Total</span>
+                    <span class="summary-value" id="total-amount">$71.50</span>
+                </div>
+                
+                <div class="ride-preview">
+                    <img src="/api/placeholder/300/150" alt="Adventure Pack Rides" class="ride-image" id="ride-image">
+                    <div class="ride-name">Adventure Pack Includes 5 Rides!</div>
+                </div>
+            </div>
+            
+            <div class="payment-form">
+                <h2 class="form-title">Secure Payment</h2>
+                
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="card">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 4H4C2.89 4 2 4.89 2 6V18C2 19.11 2.89 20 4 20H20C21.11 20 22 19.11 22 18V6C22 4.89 21.11 4 20 4ZM20 18H4V12H20V18ZM20 8H4V6H20V8Z"/>
+                        </svg>
+                        <div class="payment-method-name">Credit Card</div>
+                    </div>
+                    <div class="payment-method" data-method="paypal">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19.5 6C19.5 6.3 19.4 6.7 19.2 7C19 7.3 18.7 7.6 18.4 7.8V11.5C18.4 12.1 17.9 12.7 17.3 12.8C17.2 12.8 17.1 12.8 17 12.8C16.7 12.8 16.4 12.7 16.1 12.5L14 10.9L12 12.1L10 10.9L7.9 9.3C7.6 9.1 7.3 9 7 9C6.9 9 6.8 9 6.8 9C6.2 9.1 5.9 9.5 5.9 10V11.2C5.9 11.4 5.9 11.6 6 11.7H3.5C2.7 11.7 2 11 2 10.2V6C2 5.2 2.7 4.5 3.5 4.5H18.5C19.3 4.5 20 5.2 20 6Z"/>
+                        </svg>
+                        <div class="payment-method-name">PayPal</div>
+                    </div>
+                    <div class="payment-method" data-method="gpay">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM19.93 9H13V11H19.11C18.87 14.4 16.16 17 13 17C10.61 17 8.5 15.38 7.56 13.12L13 9.93V7H7.4C8.84 4.6 11.23 3 14 3C17.41 3 20.22 5.43 20.86 8.68C20.93 8.82 20.97 8.96 21 9.12C21 9.41 20.97 9.7 20.93 9.98C20.92 9.66 20.91 9.33 19.93 9Z"/>
+                        </svg>
+                        <div class="payment-method-name">Google Pay</div>
+                    </div>
+                </div>
+                
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="parent-name">Parent/Guardian Name</label>
+                        <input type="text" id="parent-name" placeholder="Full Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="youremail@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Contact Number</label>
+                        <input type="tel" id="phone" placeholder="(123) 456-7890" required>
+                    </div>
+                    
+                    <div class="card-details" id="card-payment-section">
+                        <div class="form-group">
+                            <label for="card-name">Name on Card</label>
+                            <input type="text" id="card-name" placeholder="As it appears on your card" required>
+                        </div>
+                        
+                        <div class="card-row">
+                            <div class="form-group card-number">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                        </div>
+                        
+                        <div class="card-row">
+                            <div class="form-group card-expiry">
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                            </div>
+                            
+                            <div class="form-group card-cvc">
+                                <label for="cvc">Security Code</label>
+                                <input type="text" id="cvc" placeholder="123" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="safety-note">
+                        <div class="safety-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#856404" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            Notice of Consent (NOC)
+                        </div>
+                        <div class="safety-content">
+                            By proceeding with this payment, you agree that you are responsible for your child's safety. Our staff ensures a safe environment but is not liable for injuries caused by negligence. Emergency first aid is available at the play zone.
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Complete Payment - $71.50</button>
+                    
+                    <div class="security-note">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                        </svg>
+                        <span>Your payment information is encrypted and secure. E-tickets will be sent to your email after payment confirmation.</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get booking information from URL parameters or sessionStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Try to get booking details from URL parameters first
+            const packageName = urlParams.get('package') || sessionStorage.getItem('package') || 'Adventure Pack';
+            const date = urlParams.get('date') || sessionStorage.getItem('date') || 'Saturday, March 8, 2025';
+            const timeSlot = urlParams.get('timeSlot') || sessionStorage.getItem('timeSlot') || '10:00 AM - 1:00 PM';
+            const childCount = urlParams.get('children') || sessionStorage.getItem('children') || '2';
+            const ageGroup = urlParams.get('ageGroup') || sessionStorage.getItem('ageGroup') || '5-10 years';
+            const packagePrice = urlParams.get('price') || sessionStorage.getItem('price') || '50.00';
+            const addons = urlParams.get('addons') || sessionStorage.getItem('addons') || 'Birthday Cake (+$15.00)';
+            
+            // Calculate tax and total
+            const price = parseFloat(packagePrice);
+            const addonPrice = 15.00; // assuming the addon is always $15 in this example
+            const subtotal = price + addonPrice;
+            const tax = subtotal * 0.10; // Assuming 10% tax
+            const total = subtotal + tax;
+            
+            // Update the booking summary
+            document.getElementById('package-name').textContent = packageName;
+            document.getElementById('booking-date').textContent = date;
+            document.getElementById('time-slot').textContent = timeSlot;
+            document.getElementById('child-count').textContent = childCount;
+            document.getElementById('age-group').textContent = ageGroup;
+            document.getElementById('package-price').textContent = '$' + price.toFixed(2);
+            document.getElementById('addons').textContent = addons;
+            document.getElementById('tax-amount').textContent = '$' + tax.toFixed(2);
+            document.getElementById('total-amount').textContent = '$' + total.toFixed(2);
+            
+            // Update the pay button text
+            document.querySelector('.submit-btn').textContent = 'Complete Payment - $' + total.toFixed(2);
+            
+            // Payment method selection
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            const cardPaymentSection = document.getElementById('card-payment-section');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    // Remove active class from all methods
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    // Add active class to clicked method
+                    this.classList.add('active');
+                    
+                    // Show/hide appropriate form fields based on payment method
+                    const selectedMethod = this.getAttribute('data-method');
+                    
+                    if (selectedMethod === 'card') {
+                        cardPaymentSection.style.display = 'block';
+                    } else {
+                        cardPaymentSection.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Form submission
+            document.getElementById('payment-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would normally process the payment through your payment gateway
+                // For now, we'll just simulate a successful payment
+                
+                // Save order details to sessionStorage for the success page
+                sessionStorage.setItem('totalAmount', total.toFixed(2));
+                sessionStorage.setItem('bookingDate', date);
+                sessionStorage.setItem('timeSlot', timeSlot);
+                sessionStorage.setItem('packageName', packageName);
+                sessionStorage.setItem('childCount', childCount);
+                
+                // Generate a random booking ID
+                const bookingId = 'FUN' + Math.floor(Math.random() * 10000000);
+                
+                // Redirect to success page (normally this would happen after payment confirmation)
+                window.location.href = 'payment-success.html?amount=' + total.toFixed(2) + 
+                                       '&date=' + encodeURIComponent(date) + 
+                                       '&timeSlot=' + encodeURIComponent(timeSlot) +
+                                       '&package=' + encodeURIComponent(packageName) +
+                                       '&bookingId=' + bookingId;
+            });
+            
+            // Basic form validation for card number (numbers only, max length)
+            const cardNumberInput = document.getElementById('card-number');
+            cardNumberInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^\d]/g, '').substring(0, 16);
+                
+                // Add spaces every 4 digits for better readability
+                let cardNumber = this.value;
+                let formatted = '';
+                for (let i = 0; i < cardNumber.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formatted += ' ';
+                    }
+                    formatted += cardNumber[i];
+                }
+                
+                if (this.value !== formatted) {
+                    this.value = formatted;
+                }
+            });
+            
+            // Basic form validation for expiry date (MM/YY format)
+            const expiryInput = document.getElementById('expiry-date');
+            expiryInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^\d]/g, '').substring(0, 4);
+                
+                if (this.value.length > 2) {
+                    this.value = this.value.substring(0, 2) + '/' + this.value.substring(2);
+                }
+            });
+            
+            // Basic form validation for CVC (numbers only, max 3-4 digits)
+            const cvcInput = document.getElementById('cvc');
+            cvcInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^\d]/g, '').substring(0, 4);
+            });
+            
+            // Phone number formatting
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function() {
+                const input = this.value.replace(/\D/g, '').substring(0, 10);
+                const areaCode = input.substring(0, 3);
+                const middle = input.substring(3, 6);
+                const last = input.substring(6, 10);
+                
+                if (input.length > 6) {
+                    this.value = `(${areaCode}) ${middle}-${last}`;
+                } else if (input.length > 3) {
+                    this.value = `(${areaCode}) ${middle}`;
+                } else if (input.length > 0) {
+                    this.value = `(${areaCode}`;
+                }
+            });
+        });
+    </script>

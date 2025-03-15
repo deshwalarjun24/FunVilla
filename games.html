@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunVilla Play Zone - Games</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="games.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Simple inline header styles */
+        .simple-header {
+            background-color: #f8f9fa;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid #ffd166;
+        }
+        
+        .simple-logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .simple-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 3px solid #ff6b6b;
+        }
+        
+        .simple-site-title {
+            font-size: 2.2rem;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 0 #4ecdc4;
+            font-family: 'Bubblegum Sans', cursive;
+        }
+        
+        .simple-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        .simple-menu li a {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.2rem;
+            color: #343a40;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .simple-menu li a:hover {
+            color: #ff6b6b;
+        }
+        
+        .simple-menu li a.active {
+            color: #ff6b6b;
+            border-bottom: 3px solid #ff6b6b;
+        }
+        
+        .simple-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+        
+        .simple-hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #ff6b6b;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .simple-menu {
+                display: none;
+            }
+            
+            .simple-hamburger {
+                display: flex;
+            }
+            
+            .simple-menu.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: #f8f9fa;
+                width: 250px;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .simple-menu.active li {
+                margin-bottom: 15px;
+            }
+        }
+        
+        /* Enhanced game page styles */
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Comic Neue', cursive;
+            overflow-x: hidden;
+        }
+        
+        /* Animated background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            background: linear-gradient(45deg, #ffecd2, #fcb69f, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .game-icon {
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background animation -->
+    <div class="background-animation"></div>
+    
+    <!-- Floating decorative elements -->
+    <div class="floating-element game-icon" style="top: 20%; left: 5%; background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect x=%2210%22 y=%2210%22 width=%2280%22 height=%2280%22 rx=%2210%22 fill=%22%23ff6b6b%22/%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%2210%22 fill=%22white%22/%3E%3Ccircle cx=%2270%22 cy=%2230%22 r=%2210%22 fill=%22white%22/%3E%3Ccircle cx=%2230%22 cy=%2270%22 r=%2210%22 fill=%22white%22/%3E%3Ccircle cx=%2270%22 cy=%2270%22 r=%2210%22 fill=%22white%22/%3E%3C/svg%3E');"></div>
+    <div class="floating-element game-icon" style="top: 15%; right: 10%; background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%234ecdc4%22/%3E%3Crect x=%2230%22 y=%2230%22 width=%2240%22 height=%2240%22 fill=%22white%22/%3E%3C/svg%3E');"></div>
+    <div class="floating-element game-icon" style="top: 40%; left: 8%; background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cpolygon points=%2250,10 90,90 10,90%22 fill=%22%23ffd166%22/%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2210%22 fill=%22white%22/%3E%3C/svg%3E');"></div>
+    <div class="floating-element game-icon" style="top: 60%; right: 15%; background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23ff6b6b%22/%3E%3Cpath d=%22M30,40 L70,40 L70,60 L30,60 Z%22 fill=%22white%22/%3E%3Cpath d=%22M40,30 L60,30 L60,70 L40,70 Z%22 fill=%22white%22/%3E%3C/svg%3E');"></div>
+
+    <!-- Simple header implementation -->
+    <header class="simple-header">
+        <div class="simple-logo-container">
+            <img src="Images/Logo/Logo.png" alt="FunVilla Logo" class="simple-logo">
+            <h1 class="simple-site-title">FunVilla Play Zone</h1>
+        </div>
+        
+        <button class="simple-hamburger" id="simple-hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <ul class="simple-menu" id="simple-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Ride-section.html">Rides</a></li>
+            <li><a href="booking.html">Book Now</a></li>
+            <li><a href="games.html" class="active">Play Games</a></li>
+            <li><a href="index.html#crowd">Crowd Status</a></li>
+            <li><a href="index.html#safety">Safety</a></li>
+            <li><a href="index.html#location">Location</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+    </header>
+
+    <div class="games-hero">
+        <h2>Fun Online Games</h2>
+        <p>Play these exciting games right in your browser!</p>
+    </div>
+
+    <section class="games-section">
+        <div class="game-selector">
+            <h3>Choose a Game</h3>
+            <div class="game-buttons">
+                <button class="game-btn active" data-game="memory">Memory Match</button>
+                <button class="game-btn" data-game="puzzle">Jigsaw Puzzle</button>
+                <button class="game-btn" data-game="coloring">Coloring Book</button>
+            </div>
+        </div>
+
+        <div class="game-container">
+            <div id="memory-game" class="game-area active">
+                <div class="game-header">
+                    <h3>Memory Match Game</h3>
+                    <div class="game-stats">
+                        <div class="moves">Moves: <span id="moves-count">0</span></div>
+                        <div class="timer">Time: <span id="time">00:00</span></div>
+                    </div>
+                    <button id="restart">Restart</button>
+                </div>
+                <div class="memory-game-container">
+                    <div class="card-container" id="cards"></div>
+                </div>
+                <div class="controls">
+                    <div class="difficulty">
+                        <label for="difficulty">Difficulty:</label>
+                        <select id="difficulty">
+                            <option value="easy">Easy (4x3)</option>
+                            <option value="medium">Medium (4x4)</option>
+                            <option value="hard">Hard (5x4)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="puzzle-game" class="game-area">
+                <div class="game-header">
+                    <h3>Jigsaw Puzzle Game</h3>
+                    <div class="game-stats">
+                        <div class="moves">Moves: <span id="puzzle-moves">0</span></div>
+                        <div class="timer">Time: <span id="puzzle-time">00:00</span></div>
+                    </div>
+                    <button id="puzzle-restart">Restart</button>
+                </div>
+                <div class="puzzle-game-container">
+                    <div class="puzzle-board" id="puzzle-board"></div>
+                    <div class="puzzle-preview">
+                        <h4>Preview</h4>
+                        <img id="puzzle-preview-img" alt="Puzzle Preview">
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="difficulty">
+                        <label for="puzzle-difficulty">Difficulty:</label>
+                        <select id="puzzle-difficulty">
+                            <option value="easy">Easy (3x3)</option>
+                            <option value="medium">Medium (4x4)</option>
+                            <option value="hard">Hard (5x5)</option>
+                        </select>
+                    </div>
+                    <div class="puzzle-selector">
+                        <label for="puzzle-image">Image:</label>
+                        <select id="puzzle-image">
+                            <option value="puzzle1">Cartoon Animals</option>
+                            <option value="puzzle2">Dinosaurs</option>
+                            <option value="puzzle3">Space Adventure</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="coloring-game" class="game-area">
+                <div class="game-header">
+                    <h3>Coloring Book</h3>
+                    <div class="coloring-tools">
+                        <div class="color-palette" id="color-palette"></div>
+                        <div class="brush-size">
+                            <label for="brush-size">Brush Size:</label>
+                            <input type="range" id="brush-size" min="1" max="20" value="5">
+                        </div>
+                    </div>
+                    <button id="coloring-clear">Clear</button>
+                </div>
+                <div class="coloring-container">
+                    <div class="coloring-canvas-container">
+                        <canvas id="coloring-canvas" width="600" height="400"></canvas>
+                    </div>
+                    <div class="coloring-templates">
+                        <h4>Choose Template</h4>
+                        <div class="template-selector">
+                            <img data-template="template1" class="template active" alt="Animal Friends">
+                            <img data-template="template2" class="template" alt="Underwater World">
+                            <img data-template="template3" class="template" alt="Space Adventure">
+                        </div>
+                        <button id="download-coloring">Download Your Art</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="Images/Logo/Logo.png" alt="FunVilla Logo" class="footer-logo-img">
+                <h3>FunVilla Play Zone</h3>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Ride-section.html">Rides & Activities</a></li>
+                    <li><a href="booking.html">Book Tickets</a></li>
+                    <li><a href="games.html">Play Games</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#E4405F">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#1DA1F2">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#4267B2">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#FF0000">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <p>Subscribe to our newsletter for special offers!</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your Email">
+                    <button type="submit">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FunVilla Play Zone. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="games.js"></script>
+    <script>
+        // Toggle menu function for mobile
+        function toggleMenu() {
+            const menu = document.getElementById('simple-menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html> 

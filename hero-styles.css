@@ -1,0 +1,182 @@
+/* Hero Section Styles */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-bottom: none;
+  margin-bottom: 0;
+  /* Removing background-image since we're using a direct img tag */
+  /* background-image: url('Images/Bakcground/Home_Section_Bg.png'); */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1; /* Ensure hero has a z-index */
+  background: transparent; /* Make background transparent */
+}
+
+.hero::before {
+  /* Removing the gradient overlay */
+  display: none;
+}
+
+.hero-content {
+  max-width: 800px;
+  width: 90%;
+  z-index: 2;
+  background: transparent; /* Changed to transparent */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: none; /* Removed shadow */
+  backdrop-filter: none; /* Removed blur effect */
+  -webkit-backdrop-filter: none; /* Removed blur effect */
+  border: none; /* Removed border */
+  transition: all 0.3s ease;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 80px; /* Increased margin-top to account for fixed header */
+}
+
+.hero-content h2 {
+  color: #FFFFFF;
+  font-size: 2rem;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  font-weight: normal;
+  background-color: transparent;
+  padding: 0;
+  display: block;
+}
+
+.special-promo {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 15px 0;
+  box-shadow: none;
+  border: none;
+}
+
+.promo-badge {
+  background: #ff5252;
+  color: white;
+  font-weight: normal;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  box-shadow: none;
+}
+
+.special-promo p {
+  color: #333;
+  font-weight: normal;
+  margin-top: 8px;
+  font-size: 1rem;
+  background-color: transparent;
+  text-shadow: none;
+  padding: 0;
+  display: block;
+}
+
+.play-game-btn, .book-now-btn {
+  margin: 8px;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  font-weight: normal;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: all 0.2s ease;
+  background: #4ecdc4;
+  color: white;
+  border: none;
+}
+
+.book-now-btn {
+  background: #ff6b6b;
+}
+
+.play-game-btn:hover, .book-now-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content::before {
+  display: none; /* Hide the gradient background */
+}
+
+.hero-content:hover::before {
+  display: none; /* Hide the hover effect */
+}
+
+.hero-content:hover {
+  transform: none; /* Remove hover animation */
+  box-shadow: none; /* Remove hover shadow */
+}
+
+#carousel-container {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive adjustments for the hero section */
+@media (max-width: 768px) {
+  .hero {
+    height: 100vh;
+    padding: 0;
+    background-position: center top;
+  }
+  
+  .hero-content {
+    padding: 15px;
+    max-width: 90%;
+    width: 90%;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 100vh;
+    padding: 0;
+  }
+  
+  .hero-content {
+    padding: 10px;
+    width: 95%;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero-content p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+} 

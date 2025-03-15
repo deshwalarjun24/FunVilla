@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FunVilla Play Zone - Fun for Kids!</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="hero-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+ 
+<div class="clouds" style="display: none;">
+    <div class="clouds">
+        <img src="Images/Cloud/Cloud1.png" class="cloud cloud1" >
+        <img src="Images/Cloud/cloud2.png" class="cloud cloud2" >
+        <img src="Images/Cloud/cloud3.png" class="cloud cloud3" >
+        <img src="Images/Cloud/cloud4.png" class="cloud cloud1" >
+        <img src="Images/Cloud/cloud5.png" class="cloud cloud2" >
+        <img src="Images/Cloud/cloud6.png" class="cloud cloud3" >
+        <img src="Images/Cloud/cloud7.png" class="cloud cloud3" >
+        
+      </div>
+</div>
+    
+  
+
+    
+    
+
+
+    <header>
+        <div class="logo-container">
+            <img src="Images/Logo/Logo.png" alt="FunVilla Logo" class="logo">
+            <h1 class="site-title">FunVilla Play Zone</h1>
+        </div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="main-nav">
+            <ul class="menu">
+                <li><a href="Ride-section.html">Rides</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+                <li><a href="games.html">Play Games</a></li>
+                <li><a href="#crowd">Crowd Status</a></li>
+                <li><a href="#safety">Safety</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="overlay" id="overlay"></div>
+    </header>
+    <section id="hero" style="display: block; height: 100vh; width: 100%; position: relative; z-index: 1;">
+        <div class="hero" style="display: flex; height: 100vh; width: 100%; position: relative; z-index: 1;">
+            <img src="Images/Bakcground/Home_Section_Bg.png" alt="Background" class="hero-direct-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.85;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%); z-index: 1;"></div>
+            <div id="carousel-container">
+                <!-- 3D carousel will be rendered here by JS -->
+            </div>
+            <div class="hero-content">
+                <h2 class="click-to-destroy" style="display: none;">POP THE CLOUDS FOR POINTS!</h2>
+                <h2>Welcome to the Ultimate Fun Adventure for Kids!</h2>
+                <p>Exciting rides, amazing play areas, and unforgettable memories await you!</p>
+                <div class="special-promo">
+                    <span class="promo-badge">Special Offer!</span>
+                    <p>Book today and get 20% off on all Mega Fun packages!</p>
+                </div>
+                <button id="play-cloud-game" class="play-game-btn">PLAY CLOUD GAME</button>
+                <a href="booking.html" class="book-now-btn bouncy">Book Your Adventure Now!</a>        
+            </div>
+        </div>
+    </section>
+    <section id="rides" class="rides-section">
+        <div class="rides-bg-decorations">
+            <div class="dot-pattern"></div>
+            <div class="ferris-wheel">
+                <div class="wheel-spoke"></div>
+                <div class="wheel-spoke"></div>
+                <div class="wheel-spoke"></div>
+                <div class="wheel-spoke"></div>
+            </div>
+            <div class="balloon balloon1"></div>
+            <div class="balloon balloon2"></div>
+            <div class="balloon balloon3"></div>
+            <div class="star star1"></div>
+            <div class="star star2"></div>
+            <div class="star star3"></div>
+            <div class="carousel-silhouette"></div>
+            <div class="roller-coaster-track"></div>
+        </div>
+        <div class="section-header">
+            
+            <h2>Our Awesome Rides</h2>
+            <p>Discover all the fun activities waiting for you!</p>
+        </div>
+        <div class="rides-container">
+            <div class="ride-card">
+                <div class="ride-image">
+                    <img src="Images/Ride-card/ride-card1.PNG" alt="Merry-Go-Round">
+                </div>
+                <h3>Merry-Go-Round</h3>
+                <p class="age-group">Age: 3-10 years</p>
+                <p class="description">Spin around on colorful horses and magical creatures!</p>
+                <div class="ride-details">
+                    <span class="duration">Duration: 5 mins</span>
+                    <span class="price">Price: $3</span>
+                </div>
+                <div class="crowd-status" data-ride="merry-go-round">
+                    <div class="status-indicator low"></div>
+                    <span class="status-text">Low Wait Time</span>
+                </div>
+                <button class="details-btn">See More</button>
+                <div class="fingers"></div>
+                <div class="fingers-extra"></div>
+            </div>
+
+            <div class="ride-card">
+                <div class="ride-image">
+                    <img src="Images/Ride-card/ride-card2.PNG" alt="Bouncy Castle">
+                </div>
+                <h3>Bouncy Castle</h3>
+                <p class="age-group">Age: 4-12 years</p>
+                <p class="description">Jump and bounce in our colorful inflatable castle!</p>
+                <div class="ride-details">
+                    <span class="duration">Duration: 15 mins</span>
+                    <span class="price">Price: $5</span>
+                </div>
+                <div class="crowd-status" data-ride="bouncy-castle">
+                    <div class="status-indicator medium"></div>
+                    <span class="status-text">Medium Wait Time</span>
+                </div>
+                <button class="details-btn">See More</button>
+                <div class="fingers"></div>
+                <div class="fingers-extra"></div>
+            </div>
+
+            <div class="ride-card">
+                <div class="ride-image">
+                    <img src="Images/Ride-card/ride-card3.PNG" alt="Mini Roller Coaster">
+                </div>
+                <h3>Mini Roller Coaster</h3>
+                <p class="age-group">Age: 6-14 years</p>
+                <p class="description">Experience thrilling dips and turns on our safe mini coaster!</p>
+                <div class="ride-details">
+                    <span class="duration">Duration: 3 mins</span>
+                    <span class="price">Price: $4</span>
+                </div>
+                <div class="crowd-status" data-ride="mini-coaster">
+                    <div class="status-indicator high"></div>
+                    <span class="status-text">High Wait Time</span>
+                </div>
+                <button class="details-btn">See More</button>
+                <div class="fingers"></div>
+                <div class="fingers-extra"></div>
+            </div>
+        </div>
+        <div class="see-all-btn-container">
+            <a href="Ride-section.html" class="see-all-btn">See All Rides</a>
+        </div>
+    </section>
+
+    <section id="booking" class="booking-section">
+        <div class="section-header">
+            <h2>Book Your Fun Day</h2>
+            <p>Reserve your spot for maximum fun!</p>
+        </div>
+        <div class="booking-container">
+            <div class="booking-form">
+                <form id="book-form">
+                    <div class="form-group">
+                        <label for="visit-date">Select Date:</label>
+                        <input type="date" id="visit-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time-slot">Choose Time Slot:</label>
+                        <select id="time-slot" required>
+                            <option value="">Select a time</option>
+                            <option value="10:00">10:00 AM - 12:00 PM</option>
+                            <option value="12:30">12:30 PM - 2:30 PM</option>
+                            <option value="3:00">3:00 PM - 5:00 PM</option>
+                            <option value="5:30">5:30 PM - 7:30 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Select Package:</label>
+                        <select id="package" required>
+                            <option value="">Choose a package</option>
+                            <option value="basic">Basic Fun (3 rides) - $10</option>
+                            <option value="super">Super Fun (6 rides) - $18</option>
+                            <option value="mega">Mega Fun (All rides) - $25</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="kids">Number of Kids:</label>
+                        <input type="number" id="kids" min="1" max="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parent-name">Parent/Guardian Name:</label>
+                        <input type="text" id="parent-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <button type="submit" class="submit-btn bouncy">Book Now</button>
+                </form>
+            </div>
+            <div class="booking-info">
+                <div class="info-card">
+                    <h3>Why Book Online?</h3>
+                    <ul>
+                        <li>Skip the waiting line!</li>
+                        <li>Special online discounts</li>
+                        <li>Reserve your favorite rides</li>
+                        <li>Get e-tickets directly to your email</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="crowd" class="crowd-section">
+        <div class="section-header">
+            <h2>Live Crowd Status</h2>
+            <p>Plan your visit during less busy hours!</p>
+        </div>
+        <div class="crowd-container">
+            <div class="crowd-meter">
+                <div class="meter-label">Current Crowd Level</div>
+                <div class="meter">
+                    <div class="meter-fill" id="crowd-level-fill"></div>
+                </div>
+                <div class="meter-status" id="crowd-status-text">Moderate Crowd</div>
+            </div>
+            <div class="crowd-info">
+                <h3>Best Times to Visit</h3>
+                <div class="time-slots">
+                    <div class="time-slot">
+                        <div class="day">Monday</div>
+                        <div class="best-time low">10:00 AM - 1:00 PM</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="day">Tuesday</div>
+                        <div class="best-time low">11:00 AM - 3:00 PM</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="day">Wednesday</div>
+                        <div class="best-time medium">1:00 PM - 4:00 PM</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="day">Thursday</div>
+                        <div class="best-time low">10:00 AM - 2:00 PM</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="day">Friday</div>
+                        <div class="best-time high">4:00 PM - 7:00 PM</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="day">Saturday</div>
+                        <div class="best-time high">10:00 AM - 12:00 PM</div>
+                    </div>
+                    <div class="time-slot">
+                        <div class="day">Sunday</div>
+                        <div class="best-time high">11:00 AM - 2:00 PM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="safety" class="safety-section">
+        <div class="section-header">
+            <h2>Safety First!</h2>
+            <p>Your child's safety is our top priority</p>
+        </div>
+        <div class="safety-container">
+            <div class="noc-card">
+                <h3>Notice of Consent (NOC)</h3>
+                <div class="noc-content">
+                    <p>When visiting FunVilla Play Zone, please note:</p>
+                    <ul>
+                        <li>Parents/guardians are responsible for supervising their children</li>
+                        <li>Our staff provides a safe environment but is not liable for injuries caused by negligence</li>
+                        <li>Emergency assistance and first aid are available on-site</li>
+                        <li>All play zone rules must be strictly followed</li>
+                    </ul>
+                    <p>By booking tickets, you agree to these terms.</p>
+                </div>
+            </div>
+            <div class="safety-guidelines">
+                <h3>Safety Guidelines</h3>
+                <div class="guidelines-list">
+                    <div class="guideline">
+                        <div class="guideline-icon">👟</div>
+                        <div class="guideline-text">Wear comfortable, closed-toe shoes</div>
+                    </div>
+                    <div class="guideline">
+                        <div class="guideline-icon">🤲</div>
+                        <div class="guideline-text">Wash hands before and after play</div>
+                    </div>
+                    <div class="guideline">
+                        <div class="guideline-icon">👀</div>
+                        <div class="guideline-text">Always keep an eye on your children</div>
+                    </div>
+                    <div class="guideline">
+                        <div class="guideline-icon">🚫</div>
+                        <div class="guideline-text">No running or pushing in play areas</div>
+                    </div>
+                    <div class="guideline">
+                        <div class="guideline-icon">🥤</div>
+                        <div class="guideline-text">No food or drinks on rides</div>
+                    </div>
+                    <div class="guideline">
+                        <div class="guideline-icon">❗</div>
+                        <div class="guideline-text">Follow all age and height requirements</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="location-section">
+        <div class="section-header">
+            <h2>Find Us Here</h2>
+            <p>We're easy to reach from anywhere in the city!</p>
+        </div>
+        <div class="location-container">
+            <div class="map-container">
+                <img src="Images/Bakcground/Map.PNG" alt="Map Location" class="map-placeholder">
+                <button class="directions-btn">Get Directions</button>
+            </div>
+            <div class="location-info">
+                <div class="address">
+                    <h3>Our Address</h3>
+                    <p>123 Fun Street, Playful City, PC 12345</p>
+                </div>
+                <div class="transport">
+                    <h3>Getting Here</h3>
+                    <div class="transport-options">
+                        <div class="transport-option">
+                            <div class="transport-icon">🚗</div>
+                            <div class="transport-details">
+                                <h4>By Car</h4>
+                                <p>Free parking available for visitors</p>
+                            </div>
+                        </div>
+                        <div class="transport-option">
+                            <div class="transport-icon">🚌</div>
+                            <div class="transport-details">
+                                <h4>By Bus</h4>
+                                <p>Bus routes 42, 56, and 73 stop nearby</p>
+                            </div>
+                        </div>
+                        <div class="transport-option">
+                            <div class="transport-icon">🚆</div>
+                            <div class="transport-details">
+                                <h4>By Train</h4>
+                                <p>10-minute walk from Central Station</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <h2>Talk to Us</h2>
+            <p>We're here to answer all your questions!</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Your Name:</label>
+                        <input type="text" id="contact-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email:</label>
+                        <input type="email" id="contact-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-subject">Subject:</label>
+                        <select id="contact-subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="booking">Booking Inquiry</option>
+                            <option value="safety">Safety Question</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Message:</label>
+                        <textarea id="contact-message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn bouncy">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Contact Details</h3>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-icon">📞</div>
+                            <div class="detail-text">
+                                <h4>Phone</h4>
+                                <p>(123) 456-7890</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">✉️</div>
+                            <div class="detail-text">
+                                <h4>Email</h4>
+                                <p>fun@funvilla.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">⏰</div>
+                            <div class="detail-text">
+                                <h4>Opening Hours</h4>
+                                <p>10:00 AM - 8:00 PM Daily</p>
+                            </div>
+                            
+                        </div>
+                        <div class="chat-support">
+                            <button class="chat-btn">Start Live chat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                    
+                    <div class="chat-container">
+                        <!-- Chat Trigger Button -->
+                        <button id="chat-trigger" class="chat-trigger">
+                          <span class="chat-trigger-text">Start Live Chat</span>
+                          <svg class="chat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                          </svg>
+                        </button>
+                        
+                        <!-- Chat Window -->
+                        <div id="chat-window" class="chat-window">
+                          <!-- Chat Header -->
+                          <div class="chat-header">
+                            <div class="chat-user">
+                              <div class="chat-avatar">
+                                <span>CS</span>
+                              </div>
+                              <div class="chat-user-info">
+                                <h4>Customer Support</h4>
+                                <span class="chat-status">Online</span>
+                              </div>
+                            </div>
+                            <button id="chat-close" class="chat-close">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                              </svg>
+                            </button>
+                          </div>
+                         
+                          <!-- Chat Messages -->
+                          <div id="chat-messages" class="chat-messages">
+                            <div class="message-received">
+                              <div class="message-content">
+                                <p>👋 Hello! How can I help you today?</p>
+                              </div>
+                              <span class="message-time">Just now</span>
+                            </div>
+                          </div>
+                          
+                          <!-- Chat Input -->
+                          <div class="chat-input-container">
+                            <textarea id="chat-input" class="chat-input" placeholder="Type your message here..." rows="1"></textarea>
+                            <button id="chat-send" class="chat-send">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+       
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="Images/Logo/Logo.png" alt="FunVilla Logo" class="footer-logo-img">
+                <h3>FunVilla Play Zone</h3>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#rides">Rides & Activities</a></li>
+                    <li><a href="#booking">Book Tickets</a></li>
+                    <li><a href="games.html">Play Games</a></li>
+                    <li><a href="#safety">Safety Guidelines</a></li>
+                    <li><a href="#location">Find Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><img src="Images/Social__Media/insta_logo.PNG" alt="Instagram"></a>
+                    <a href="#" class="social-icon"><img src="Images/Social__Media/twitter_logo.PNG" alt="Twitter"></a>
+                    <a href="#" class="social-icon"><img src="Images/Social__Media/facebook_logo.PNG" alt="Facebook"></a>
+                    <a href="#" class="social-icon"><img src="Images/Social__Media/youtube_logo.PNG" alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <p>Subscribe to our newsletter for special offers!</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your Email">
+                    <button type="submit">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FunVilla Play Zone. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Modals -->
+    <div class="modal" id="ride-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <!-- Content will be dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="booking-confirm-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <h3>Booking Confirmed!</h3>
+                <p>Your fun day has been booked successfully!</p>
+                <p>A confirmation email has been sent to your inbox.</p>
+                <div class="ticket-preview">
+                    <div class="ticket-header">
+                        <h4>FunVilla E-Ticket</h4>
+                    </div>
+                    <div class="ticket-details">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                    <div class="ticket-barcode">
+                        <img src="/api/placeholder/200/80" alt="Barcode">
+                    </div>
+                </div>
+                <button class="download-ticket-btn">Download Ticket</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Overlay -->
+    <div id="game-overlay" class="game-overlay">
+        <div class="game-header">
+            <div class="game-score">
+                <span>Score: </span>
+                <span id="game-score-value">0</span>
+            </div>
+            <div class="game-controls">
+                <button id="pause-game" class="game-control-btn">Pause</button>
+                <button id="back-to-home" class="game-control-btn">Back to Home</button>
+            </div>
+        </div>
+        <div id="game-container" class="game-container">
+            <!-- Game will be rendered here -->
+            <div class="game-clouds">
+                <!-- Cloud elements will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script src="cloud-game.js"></script>
+</body>
+</html>

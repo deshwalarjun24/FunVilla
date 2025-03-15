@@ -1,0 +1,431 @@
+<!-- Live Chat Section HTML -->
+<div class="chat-container">
+    <!-- Chat Trigger Button -->
+    <button id="chat-trigger" class="chat-trigger">
+      <span class="chat-trigger-text">Start Live Chat</span>
+      <svg class="chat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </button>
+    
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-window">
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-user">
+          <div class="chat-avatar">
+            <span>CS</span>
+          </div>
+          <div class="chat-user-info">
+            <h4>Customer Support</h4>
+            <span class="chat-status">Online</span>
+          </div>
+        </div>
+        <button id="chat-close" class="chat-close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Chat Messages -->
+      <div id="chat-messages" class="chat-messages">
+        <div class="message-received">
+          <div class="message-content">
+            <p>👋 Hello! How can I help you today?</p>
+          </div>
+          <span class="message-time">Just now</span>
+        </div>
+      </div>
+      
+      <!-- Chat Input -->
+      <div class="chat-input-container">
+        <textarea id="chat-input" class="chat-input" placeholder="Type your message here..." rows="1"></textarea>
+        <button id="chat-send" class="chat-send">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    /* Chat Styles */
+    .chat-container {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    /* Chat Trigger Button */
+    .chat-trigger {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #4361ee;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(67, 97, 238, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .chat-trigger:hover {
+      background-color: #3a56d4;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+    }
+    
+    .chat-icon {
+      width: 20px;
+      height: 20px;
+    }
+    
+    /* Chat Window */
+    .chat-window {
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 350px;
+      height: 450px;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+    
+    .chat-window.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+    
+    /* Chat Header */
+    .chat-header {
+      padding: 16px;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #e9ecef;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .chat-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .chat-avatar {
+      width: 40px;
+      height: 40px;
+      background-color: #4361ee;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .chat-user-info h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #212529;
+    }
+    
+    .chat-status {
+      font-size: 12px;
+      color: #20c997;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .chat-status::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #20c997;
+      border-radius: 50%;
+    }
+    
+    .chat-close {
+      background: none;
+      border: none;
+      color: #6c757d;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+    }
+    
+    .chat-close:hover {
+      background-color: #e9ecef;
+      color: #212529;
+    }
+    
+    /* Chat Messages */
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .message-received, .message-sent {
+      max-width: 80%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .message-sent {
+      align-self: flex-end;
+    }
+    
+    .message-content {
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    
+    .message-received .message-content {
+      background-color: #f1f3f5;
+      border-bottom-left-radius: 4px;
+      color: #212529;
+    }
+    
+    .message-sent .message-content {
+      background-color: #4361ee;
+      border-bottom-right-radius: 4px;
+      color: white;
+    }
+    
+    .message-time {
+      font-size: 11px;
+      color: #adb5bd;
+      margin-top: 4px;
+      margin-left: 4px;
+    }
+    
+    .message-sent .message-time {
+      align-self: flex-end;
+      margin-right: 4px;
+    }
+    
+    /* Chat Input */
+    .chat-input-container {
+      padding: 16px;
+      border-top: 1px solid #e9ecef;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .chat-input {
+      flex: 1;
+      border: 1px solid #dee2e6;
+      border-radius: 24px;
+      padding: 12px 16px;
+      font-size: 14px;
+      resize: none;
+      outline: none;
+      max-height: 100px;
+      transition: border-color 0.2s;
+    }
+    
+    .chat-input:focus {
+      border-color: #4361ee;
+    }
+    
+    .chat-send {
+      background-color: #4361ee;
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .chat-send:hover {
+      background-color: #3a56d4;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 576px) {
+      .chat-window {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+      }
+      
+      .chat-trigger {
+        right: 20px;
+        bottom: 20px;
+      }
+      
+      .chat-trigger-text {
+        display: none;
+      }
+      
+      .chat-trigger {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        padding: 0;
+        justify-content: center;
+      }
+    }
+  </style>
+  
+  <script>
+    // Live Chat JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      const chatTrigger = document.getElementById('chat-trigger');
+      const chatWindow = document.getElementById('chat-window');
+      const chatClose = document.getElementById('chat-close');
+      const chatInput = document.getElementById('chat-input');
+      const chatSend = document.getElementById('chat-send');
+      const chatMessages = document.getElementById('chat-messages');
+      
+      // Toggle chat window
+      chatTrigger.addEventListener('click', function() {
+        chatWindow.classList.toggle('active');
+        if (chatWindow.classList.contains('active')) {
+          chatInput.focus();
+        }
+      });
+      
+      // Close chat window
+      chatClose.addEventListener('click', function() {
+        chatWindow.classList.remove('active');
+      });
+      
+      // Send message function
+      function sendMessage() {
+        const message = chatInput.value.trim();
+        if (message === '') return;
+        
+        // Add message to chat
+        addMessage(message, 'sent');
+        
+        // Clear input
+        chatInput.value = '';
+        
+        // Auto resize input
+        autoResizeInput();
+        
+        // Simulate response after a short delay
+        setTimeout(simulateResponse, 1000);
+      }
+      
+      // Send message on button click
+      chatSend.addEventListener('click', sendMessage);
+      
+      // Send message on Enter key press (but allow Shift+Enter for new line)
+      chatInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+      
+      // Auto resize textarea
+      function autoResizeInput() {
+        chatInput.style.height = 'auto';
+        chatInput.style.height = (chatInput.scrollHeight) + 'px';
+      }
+      
+      chatInput.addEventListener('input', autoResizeInput);
+      
+      // Add message to chat
+      function addMessage(text, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = type === 'sent' ? 'message-sent' : 'message-received';
+        
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const timeString = `${hours}:${minutes}`;
+        
+        messageDiv.innerHTML = `
+          <div class="message-content">
+            <p>${text}</p>
+          </div>
+          <span class="message-time">${timeString}</span>
+        `;
+        
+        chatMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      // Simulate response
+      function simulateResponse() {
+        const responses = [
+          "Thank you for your message! Our team will assist you shortly.",
+          "I understand. Can you provide more details so I can help you better?",
+          "That's a great question. Let me check and get back to you in a moment.",
+          "We typically resolve this kind of issue within 24 hours.",
+          "Is there anything else you would like to know?"
+        ];
+        
+        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+        addMessage(randomResponse, 'received');
+      }
+      
+      // Initialize
+      autoResizeInput();
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+.chat-support {
+    margin-top: auto;
+    text-align: center;
+  }
+  
+  .chat-btn {
+    background-color: var(--accent);
+    color: var(--dark);
+    font-weight: bold;
+    width: 100%;
+  }

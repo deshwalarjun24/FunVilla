@@ -1,0 +1,6 @@
+Please add three puzzle images here named:
+1. puzzle1.jpg - A cartoon animals image
+2. puzzle2.jpg - A dinosaurs image
+3. puzzle3.jpg - A space adventure image
+
+These should be square images (e.g., 600x600 pixels) that will be used for the jigsaw puzzle game. 
